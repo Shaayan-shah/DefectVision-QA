@@ -25,7 +25,9 @@ DefectVision-QA addresses this demand with an open, modular computer vision pipe
 ### 2.1 Illumination Normalization & Edge-Preserving Denoising
 CLAHE improves local contrast by applying histogram equalization to image tiles, with clipping used to limit contrast amplification.
 
-$$\text{CLAHE}(I) = \text{clip}_{\beta}\Big(\sum_{k=0}^{L-1} p_k\Big)$$
+$$I_{\mathrm{out}}(x,y) = T_{r,c}(I(x,y))$$
+
+where $T_{r,c}$ is the intensity mapping derived from the clipped cumulative histogram for tile $(r,c)$.
 
 To suppress high-frequency camera sensor noise without blurring fine micro-fissure boundaries, bilateral filtering is applied:
 

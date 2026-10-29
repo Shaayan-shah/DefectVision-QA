@@ -1,20 +1,20 @@
 # DefectVision-QA
 
-### Automated Surface Defect Detection & Quality Assurance Pipeline
+**Automated surface-defect detection and quality-assurance pipeline**
 Real-time computer vision system for micro-crack detection, abrasive scratch isolation, casting void segmentation, and automated production pass/fail tolerance gating.
 
 ---
 
 ## 1. Problem Statement & Industrial Relevance
 
-In modern high-speed manufacturing (semiconductor wafers, machined metallic surfaces, composite materials, and pharmaceutical packaging), manual visual inspection suffers from high error rates (typically 20% to 30%) caused by ocular fatigue and subjective human judgment.
+In high-throughput manufacturing, manual inspection can be difficult to scale consistently across products, lighting conditions, and production speeds. Automated inspection can support repeatable review when validated for the target process.
 
 Production facilities require deterministic, low-latency, edge-deployable inspection pipelines that can:
 1. Normalize non-uniform lighting conditions and diffuse dome glare across textured surfaces.
 2. Differentiate authentic micro-defects (fractures, burrs, pitting, voids) from baseline substrate grain texture.
 3. Classify detected flaws into functional engineering categories based on invariant geometric metrics.
-4. Execute tolerance gating (PASS / FAIL / WARNING) in sub-30ms windows without dependencies on external cloud APIs.
-5. Generate immutable, ISO-compliant JSON audit records and cumulative CSV telemetry logs.
+4. Evaluate configured PASS / FAIL / WARNING tolerances locally, without relying on external cloud APIs.
+5. Generate structured JSON inspection records and cumulative CSV telemetry logs.
 
 DefectVision-QA addresses this demand with an open, modular computer vision pipeline featuring both reference-free morphological gradient analysis and golden-sample differential inspection.
 
@@ -23,7 +23,7 @@ DefectVision-QA addresses this demand with an open, modular computer vision pipe
 ## 2. Mathematical Formulation & Algorithmic Pipeline
 
 ### 2.1 Illumination Normalization & Edge-Preserving Denoising
-Industrial camera feeds frequently exhibit vignetting and non-uniform lighting gradients. The pipeline decouples intensity distribution via Contrast Limited Adaptive Histogram Equalization (CLAHE):
+CLAHE improves local contrast by applying histogram equalization to image tiles, with clipping used to limit contrast amplification.
 
 $$\text{CLAHE}(I) = \text{clip}_{\beta}\Big(\sum_{k=0}^{L-1} p_k\Big)$$
 
